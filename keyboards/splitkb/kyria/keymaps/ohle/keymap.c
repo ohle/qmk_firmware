@@ -17,6 +17,15 @@ enum layers {
 #define NAV      MO(_NAV)
 #define MOUSE    MO(_MOUSE)
 
+#define MT_A     MT(MOD_HYPR, KC_A)
+#define MT_S     MT(MOD_LCTL, KC_S)
+#define MT_D     MT(MOD_LALT, KC_D)
+#define MT_F     MT(MOD_LGUI, KC_F)
+#define MT_H     MT(MOD_RGUI, KC_H)
+#define MT_J     MT(MOD_RALT, KC_J)
+#define MT_K     MT(MOD_RCTL, KC_K)
+#define MT_L     MT(MOD_HYPR, KC_L)
+
 #define PAUSE    KC_MEDIA_PLAY_PAUSE
 
 // clang-format off
@@ -37,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_BASE] = LAYOUT(
      PAUSE   , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , XXXXXXX,
-     KC_ESC  , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN, KC_QUOT,
+     KC_ESC  , MT_A ,  MT_S   ,  MT_D  ,   MT_F ,   KC_G ,                                        MT_H,   MT_J ,  MT_K ,   MT_L ,KC_SCLN, KC_QUOT,
      KC_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , XXXXXXX,XXXXXXX,     XXXXXXX, XXXXXXX, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
                                 MOUSE  ,   NAV  , KC_ENT , SYM_SPC,NUM_TAB,     FUN_TAB, KC_SPC,KC_ENT, KC_BSPC,KC_DEL
     ),
