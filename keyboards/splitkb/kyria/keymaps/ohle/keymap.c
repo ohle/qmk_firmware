@@ -185,11 +185,11 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
         if (clockwise) {
             for (uint8_t i = 0; i < scrollStepSize; i++) {
-                tap_code(KC_UP);
+                tap_code(KC_DOWN);
             }
         } else {
             for (uint8_t i = 0; i < scrollStepSize; i++) {
-                tap_code(KC_DOWN);
+                tap_code(KC_UP);
             }
         }
     }
