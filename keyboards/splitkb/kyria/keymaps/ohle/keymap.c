@@ -72,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |   🎛️   |      |      |      |      |      |                              |      |   &  |   *  |   (  |      |   🎛️   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | Hyper|  Ctrl|  Alt |  Gui |      |                              |      |   $  |   %  |   ^  |   {  |    }   |
+ * |        | Hyper|  Ctrl|  Alt |  Gui |      |                              |   +  |   $  |   %  |   ^  |   {  |    }   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |      |      |      |      |      |      |      |  |      |      |      |   !  |   @  |   #  |  )   | Shift )|
+ * | LShift |      |      |      |      |      |      |      |  |      |      |   |  |   !  |   @  |   #  |  )   | Shift )|
  * `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
  *                        |      |      |      | Space|      |  |      | Space|      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -82,8 +82,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_SYM] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     _______, KC_AMPR, KC_ASTR, KC_LPRN, _______, _______,
-      _______, KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, _______,                                     _______, KC_DLR , KC_PERC, KC_CIRC, KC_LCBR, KC_RCBR,
-      KC_LSFT, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_EXLM, KC_AT  , KC_HASH, KC_LPRN, MT(MOD_RSFT, KC_RPRN),
+      _______, KC_HYPR, KC_LCTL, KC_LALT, KC_LGUI, _______,                                     KC_PLUS, KC_DLR , KC_PERC, KC_CIRC, KC_LCBR, KC_RCBR,
+      KC_LSFT, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PIPE, KC_EXLM, KC_AT  , KC_HASH, KC_LPRN, MT(MOD_RSFT, KC_RPRN),
                                  _______, _______, _______, KC_SPC , _______, _______, KC_SPC , _______, _______, _______
     ),
 /*
