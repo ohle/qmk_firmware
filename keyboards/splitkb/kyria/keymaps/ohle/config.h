@@ -26,3 +26,5 @@
 
 // Lets you roll mod-tap keys
 #define IGNORE_MOD_TAP_INTERRUPT
+
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
