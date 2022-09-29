@@ -19,11 +19,11 @@ enum layers {
 
 #define MT_A     MT(MOD_HYPR, KC_A)
 #define MT_S     MT(MOD_LGUI, KC_S)
-#define MT_S     MT(MOD_LALT, KC_D)
+#define MT_D     MT(MOD_LALT, KC_D)
 #define MT_F     MT(MOD_LCTL, KC_F)
 #define MT_J     MT(MOD_RCTL, KC_J)
 #define MT_K     MT(MOD_RALT, KC_K)
-#define MT_L     MT(MOD_GUI, KC_L)
+#define MT_L     MT(MOD_RGUI, KC_L)
 #define MT_COL   MT(MOD_HYPR, KC_SCLN)
 
 #define LSHFT    OSM(MOD_LSFT)
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_RPRN, _______,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_LCBR, KC_RCBR,
-      LSHFT  , _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , KC_2   , KC_3   , KC_LBRC, MT(MOD_RSFT, KC_RPRC),
+      LSHFT  , _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , KC_2   , KC_3   , KC_LBRC, MT(MOD_RSFT, KC_RPRN),
                                  _______, _______, _______, KC_SPC , _______, _______, KC_SPC , _______, KC_0   , KC_MINUS
     ),
 /*
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_SYM] = LAYOUT(
-      _______, _______, _______, _______, _______, _______,                                     KC_TILD, KC_AMPR, KC_ASTR, KC_LPRN, KR_RPRN, _______,
+      _______, _______, _______, _______, _______, _______,                                     KC_TILD, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_PLUS, KC_DLR , KC_PERC, KC_CIRC, KC_LCBR, KC_RCBR,
       LSHFT  , _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PIPE, KC_EXLM, KC_AT  , KC_HASH, KC_LBRC, MT(MOD_RSFT, KC_RBRC),
                                  _______, _______, _______, KC_SPC , _______, _______, KC_SPC , _______, _______, KC_UNDS
