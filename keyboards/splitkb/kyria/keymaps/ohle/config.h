@@ -30,3 +30,5 @@
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 #define TAPPING_TERM 500 // ms
+
+#define COMPOSE_KEY X_APP

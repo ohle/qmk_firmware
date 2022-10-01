@@ -7,15 +7,39 @@ enum layers {
     _FUN,
     _NAV,
     _MOUSE,
+    _ALTSYM,
 };
 
+
+enum compose_keycodes {
+    C_MU = SAFE_RANGE,
+    C_AE,
+    C_OE,
+    C_UE,
+    C_SZ,
+    C_DEG,
+    C_EUR,
+    C_MDASH,
+    C_R,
+    C_C,
+    C_LEQ,
+    C_GEQ,
+    C_NEQ,
+    C_PM,
+    C_TM,
+    C_SQRT,
+    C_SQ,
+    C_CUB,
+};
 
 // Aliases for readability
 #define NUM_TAB  LT(_NUM, KC_TAB)
 #define SYM_SPC  LT(_SYM, KC_SPC)
+#define ASYM_SPC LT(_ALTSYM, KC_SPC)
 #define FUN_TAB  LT(_FUN, KC_TAB)
 #define NAV      MO(_NAV)
 #define MOUSE    MO(_MOUSE)
+#define ALTSYM   LT(_ALTSYM, KC_SPC)
 
 #define MT_A     MT(MOD_HYPR, KC_A)
 #define MT_S     MT(MOD_LGUI, KC_S)
@@ -42,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |   Esc  |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | : ;  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | , <  | . >  | / ?  | RShift |
- * `----------------------+------+------+------| Sym  | Num  |  | Fun  |      |------+------+------+----------------------'
+ * `----------------------+------+------+------| Sym  | Num  |  | Fun  |AltSym|------+------+------+----------------------'
  *                        | Mouse| Nav  | Enter| Space| Tab  |  | Tab  | Space| Enter| bcksp|  del |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -51,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      PAUSE   , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_ENT,
      KC_ESC  , MT_A ,  MT_S   ,  MT_D  ,   MT_F ,   KC_G ,                                        KC_H,   MT_J ,  MT_K ,   MT_L , MT_COL, KC_QUOT,
      LSHFT   , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , XXXXXXX,XXXXXXX,     XXXXXXX, XXXXXXX, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, RSHFT,
-                                MOUSE  ,   NAV  , KC_ENT , SYM_SPC,NUM_TAB,     FUN_TAB, KC_SPC,KC_ENT, KC_BSPC,KC_DEL
+                                MOUSE  ,   NAV  , KC_ENT , SYM_SPC,NUM_TAB,     FUN_TAB, ASYM_SPC,KC_ENT, KC_BSPC,KC_DEL
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -75,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  PAUSE |      |      |      |      |      |                              |   ~  |   &  |   *  |   (  |   )  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | Hyper|  Ctrl|  Alt |  Gui |      |                              |   +  |   $  |   %  |   ^  |  {   |   }    |
+ * |        | Hypr | GUI  |  Alt | Ctrl |      |                              |   +  |   $  |   %  |   ^  |  {   |   }    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |      |      |      |      |      |      |      |  |      |      |   |  |   !  |   @  |   #  |  [   | Shift ]|
  * `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -93,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  PAUSE | F12  |  F7  |  F8  |  F9  |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | F11  |  F4  |  F5  |  F6  |      |                              |      | Hyper| Ctrl |  Alt |  GUI |        |
+ * |        | F11  |  F4  |  F5  |  F6  |      |                              |      | Ctrl |  Alt |  GUI | Hypr |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift | F10  |  F1  |  F2  |  F3  |      |      |      |  |      |      |      |      |      |      |      | RShift |
  * `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -111,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  PAUSE |      |      |      |      |      |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | Hyper|  Ctrl|  Alt |  Gui |      |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
+ * |        | Hypr | GUI  |  Alt | Ctrl |      |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |      |      |      |      |      |      |      |  |      |      | Home |PgDown| PgUp |  End |      |        |
  * `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -131,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  PAUSE |      |      |      |      | acc2 |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        | Hyper|  Ctrl|  Alt |  Gui | acc1 |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
+ * |        | Hypr | GUI  |  Alt | Ctrl | acc1 |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |      |      |      |      | acc0 |      |      |  |      |      |  MR1 |  MP1 |  MR2 |  MP2 |      |        |
  * `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -144,6 +168,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, KC_ACL1,                                     KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
       LSHFT  , _______, _______, _______, _______, KC_ACL0, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_REC1, DM_PLY1, DM_REC2, DM_PLY2, _______, _______,
                                  _______, _______, _______, KC_SPC , _______, KC_BTN1, KC_BTN2, KC_BTN3, _______, _______
+    ),
+/*
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |  ²   |   ³  |   €  |   ®  |   ™  |                              |   ±  |   ü  |      |   ö  |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |  ä   |   ß  |   °  |      |      |                              |   ≠  |      |      |      |      |        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |      |      |   ©  |   √  |      |      |      |  |      |      |      |   µ  |   ≤  |   ≥  |      |        |
+ * `----------------------+------+------+------+      |      |  |      |      |------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |   —  |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_ALTSYM] = LAYOUT(
+      _______, C_SQ   , C_CUB  , C_EUR  , C_R    , C_TM   ,                                     C_PM   , C_UE   , _______, C_OE   , _______, _______,
+      _______, C_AE   , C_SZ   , C_DEG  , _______, _______,                                     C_NEQ  , _______, _______, _______, _______, _______,
+      _______, _______, _______, C_C    , C_SQRT , _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, C_MU   , C_LEQ  , C_GEQ  , _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, C_MDASH
     ),
 //  * Layer template
 //  *
@@ -206,4 +249,87 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     }
     return false;
 }
+
+#define SEND_COMPSEQ(seq) SEND_STRING(SS_TAP(COMPOSE_KEY)seq)
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) {
+        return true;
+    }
+
+    uint8_t shifted = get_mods() & MOD_MASK_SHIFT;
+
+    switch (keycode) {
+        case C_MU:
+            SEND_COMPSEQ("mu");
+            break;
+        case C_AE:
+            if (shifted) {
+                SEND_COMPSEQ("\"A");
+            } else {
+                SEND_COMPSEQ("\"a");
+            }
+            break;
+        case C_OE:
+            if (shifted) {
+                SEND_COMPSEQ("\"O");
+            } else {
+                SEND_COMPSEQ("\"o");
+            }
+            break;
+        case C_UE:
+            if (shifted) {
+                SEND_COMPSEQ("\"U");
+            } else {
+                SEND_COMPSEQ("\"u");
+            }
+            break;
+        case C_SZ:
+            SEND_COMPSEQ("ss");
+            break;
+        case C_DEG:
+            SEND_COMPSEQ("oo");
+            break;
+        case C_EUR:
+            SEND_COMPSEQ("=e");
+            break;
+        case C_MDASH:
+            SEND_COMPSEQ("---");
+            break;
+        case C_R:
+            SEND_COMPSEQ("or");
+            break;
+        case C_C:
+            SEND_COMPSEQ("oc");
+            break;
+        case C_LEQ:
+            SEND_COMPSEQ("<=");
+            break;
+        case C_GEQ:
+            SEND_COMPSEQ(">=");
+            break;
+        case C_NEQ:
+            SEND_COMPSEQ("/=");
+            break;
+        case C_PM:
+            SEND_COMPSEQ("+-");
+            break;
+        case C_TM:
+            SEND_COMPSEQ("tm");
+            break;
+        case C_SQRT:
+            SEND_COMPSEQ("v/");
+            break;
+        case C_SQ:
+            SEND_COMPSEQ("^2");
+            break;
+        case C_CUB:
+            SEND_COMPSEQ("^3");
+            break;
+        default:
+            return true;
+    }
+    return false;
+}
+
 #endif
