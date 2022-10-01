@@ -15,7 +15,7 @@ ENC1 positions and two 2u thumb keys per side.
 ## Base layer
 ```
 ,-------------------------------------------.                              ,-------------------------------------------.
-|   🎛️   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |   🎛️   |
+|  PAUSE |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | ENTER  |
 |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
 |   Esc  |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | : ;  |  ' "   |
 |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -43,9 +43,9 @@ Basic QWERTY with:
 
 ```
 ,-------------------------------------------.                              ,-------------------------------------------.
-|   🎛️   |      |      |      |      |      |                              |  ` ~ | 7 &  | 8 *  | 9 (  |      |   🎛️   |
+|  PAUSE |      |      |      |      |      |                              |  ` ~ | 7 &  | 8 *  | 9 (  |      |        |
 |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-|        | Hyper|  Ctrl|  Alt |  Gui |      |                              |  = + | 4 $  | 5 %  | 6 ^  | [ {  |  ] }   |
+|        | Hypr | GUI  |  Alt | Ctrl |      |                              |  = + | 4 $  | 5 %  | 6 ^  | [ {  |  ] }   |
 |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 | LShift |      |      |      |      |      |      |      |  |      |      |  \ | | 1 !  | 2 @  | 3 #  | (    | Shift )|
 `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -62,9 +62,9 @@ A numblock, with symbols as shifted versions of their standard numbers.
                                                                                                                          
 ```
 ,-------------------------------------------.                              ,-------------------------------------------.
-|   🎛️   |      |      |      |      |      |                              |   ~  |   &  |   *  |   (  |      |   🎛️   |
+|  PAUSE |      |      |      |      |      |                              |   ~  |   &  |   *  |   (  |      |        |
 |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-|        | Hyper|  Ctrl|  Alt |  Gui |      |                              |   +  |   $  |   %  |   ^  |   {  |    }   |
+|        | Hypr | GUI  |  Alt | Ctrl |      |                              |   +  |   $  |   %  |   ^  |   {  |    }   |
 |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 | LShift |      |      |      |      |      |      |      |  |      |      |   |  |   !  |   @  |   #  |  )   | Shift )|
 `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -80,11 +80,11 @@ make them available without shift.
 ## Function keys
 ```
 ,-------------------------------------------.                              ,-------------------------------------------.
-|   🎛️   | f12  |  f7  |  f8  |  f9  |      |                              |      |      |      |      |      |   🎛️   |
+|  PAUSE | f12  |  f7  |  f8  |  f9  |      |                              |      |      |      |      |      |        |
 |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-|        | f11  |  f4  |  f5  |  f6  |      |                              |      | hyper| ctrl |  alt |  gui |        |
+|        | f11  |  f4  |  f5  |  f6  |      |                              |      | Ctrl |  Alt |  GUI | Hypr |        |
 |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-| LShift | f10  |  f1  |  f2  |  f3  |      |      |      |  |      |      |      |      |      |      |      | rshift |
+| LShift | f10  |  f1  |  f2  |  f3  |      |      |      |  |      |      |      |      |      |      |      | Shift  |
 `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
                        |      |      |      | space|      |  |      | space|      |      |      |
                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -96,9 +96,9 @@ Function keys on the left in a numblock arrangement.
 ## Navigation Layer
 ```
 ,-------------------------------------------.                              ,-------------------------------------------.
-|   🎛️   |      |      |      |      |      |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |   🎛️   |
+|  PAUSE |      |      |      |      |      |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |        |
 |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-|        | Hyper|  Ctrl|  Alt |  Gui |      |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
+|        | Hypr | GUI  |  Alt | Ctrl |      |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
 |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 | LShift |      |      |      |      |      |      |      |  |      |      | Home | PgUp |PgDown|  End |      |        |
 `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
@@ -113,11 +113,11 @@ Home/End/PgUp/PgDown below
 ## Mouse Layer
 ```
 ,-------------------------------------------.                              ,-------------------------------------------.
-|   🎛️   |      |      |      |      | acc2 |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |   🎛️   |
+|  PAUSE |      |      |      |      | acc2 |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |        |
 |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-|        | Hyper|  Ctrl|  Alt |  Gui | acc1 |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
+|        | Hypr | GUI  |  Alt | Ctrl | acc1 |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
 |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-| LShift |      |      |      |      | acc0 |      |      |  |      |      |      |      |      |      |      |        |
+| LShift |      |      |      |      | acc0 |      |      |  |      |      |  MR1 |  MP1 |  MR2 |  MP2 |      |        |
 `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
                        |      |      |      | Space|      |  |      | Space|      |      |      |
                        | --   |      |      |      |      |  |      |      |      |      |      |
@@ -127,73 +127,23 @@ Home/End/PgUp/PgDown below
 Mouse navigation on right homerow in vim arrangement; acceleration control with
 left index. Buttons on right thumb cluster.
 
+Bottom row has dynamic macro control.
 
-```c
-enum layers {
-    _BASE = 0,
-    _NUM,
-    _SYM,
-    _FUN,
-    _NAV,
-    _MOUSE
-};
+
+## Alt Symbols
 ```
-or re-define the `QWERTY`, `COLEMAK` and `DVORAK` keys to point to custom keycodes starting on `SAFE_RANGE` and calling the `set_single_persistent_default_layer` function inside of `process_record_user`.
-
-### Todo
-
-Via splitkb discord:
-
-> So I wanted to use the rotary encoder for scrolling, but didn't like the
-> firmware weight of MOUSEKEYS and didn't like the big step size of PgUp/PgDn, yet
-> I wanted to be able to scroll fast when I wanted to. I tried two approaches,
-> namely: A) step size inversely proportional to the (squared) rotation tick
-> interval and B) gradually larger steps when continuously scrolling. I found the
-> second approach to be more reliable in precision scrolling (e.g. navigating rows
-> in code/text).
-> I wanted to share the implementation in case anyone would like a smoother
-> lightweight scrolling with encoders. Simply put the following in your config.h
-> file:
- 
- ```
-#define ACCSCROLL_MAX_STEP 100
-#define ACCSCROLL_STEP_SIZE 3
-#define ACCSCROLL_REPEAT_INTERVAL 75
-
-
-And then in your keymap.c file define some variables:
-
-// Timer for accelerated scrolling
-static uint16_t scroll_timer = 0;
-static uint8_t scroll_step_size = 1;
-
-
-And then the following in the desired spot of your encoder_update_user() function:
-
-                // Scroll up/down with accelerated speed
-                if (timer_elapsed(scroll_timer) < ACCSCROLL_REPEAT_INTERVAL) {
-                    scroll_step_size += ACCSCROLL_STEP_SIZE;
-                    scroll_step_size = (scroll_step_size > ACCSCROLL_MAX_STEP) ? ACCSCROLL_MAX_STEP : scroll_step_size;
-                } else {
-                    scroll_step_size = 1;
-                }
-                scroll_timer = timer_read();
-
-                if (clockwise) {
-                    for (uint8_t i = 0; i < scroll_step_size; i++) {
-                        tap_code(KC_UP);
-                    }
-                } else {
-                    for (uint8_t i = 0; i < scroll_step_size; i++) {
-                        tap_code(KC_DOWN);
-                    }
-                }
-
+ ,-------------------------------------------.                              ,-------------------------------------------.
+ |        |  ²   |   ³  |   €  |   ®  |   ™  |                              |   ±  |   ü  |      |   ö  |      |        |
+ |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ |        |  ä   |   ß  |   °  |      |      |                              |   ≠  |      |      |      |      |        |
+ |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ |        |      |      |   ©  |   √  |      |      |      |  |      |      |      |   µ  |   ≤  |   ≥  |      |        |
+ `----------------------+------+------+------+      |      |  |      |      |------+------+------+----------------------'
+                        |      |      |      |      |      |  |      |      |      |      |   —  |
+                        |      |      |      |      |      |  |      |      |      |      |      |
+                        `----------------------------------'  `----------------------------------'
 ```
- 
-> (Oh, gosh, does Discord has something like a code formatting block instead of
-> this?) triple backticks did the trick... And yes, I'm probably breaking style
-> conventions, best practices etc. Feel free to review 🙂 The ACCSCROLL_* macros
-> are of course for tuning the feel of the scroll. Step size is how fast scroll
-> speed builds up. Max step is the fastest scroll speed. Repeat interval is the
-> longest time (in ms) between ticks where it still should increase step size.
+
+These are mostly mathematical symbols and german Umlauts, plus the em-dash. All
+implemented as compose key sequences, with the compose key defined in
+`config.h`.
