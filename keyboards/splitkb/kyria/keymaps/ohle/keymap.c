@@ -238,12 +238,20 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         scrollTimer = timer_read();
 
         if (clockwise) {
-            for (uint8_t i = 0; i < scrollStepSize; i++) {
-                tap_code(KC_DOWN);
+            if (get_highest_layer(layer_state) == _NAV) {
+                SEND_STRING(SS_RCTL(SS_RALT(SS_TAP(X_RIGHT))));
+            } else {
+                for (uint8_t i = 0; i < scrollStepSize; i++) {
+                    tap_code(KC_DOWN);
+                }
             }
         } else {
-            for (uint8_t i = 0; i < scrollStepSize; i++) {
-                tap_code(KC_UP);
+            if (get_highest_layer(layer_state) == _NAV) {
+                SEND_STRING(SS_RCTL(SS_RALT(SS_TAP(X_LEFT))));
+            } else {
+                for (uint8_t i = 0; i < scrollStepSize; i++) {
+                    tap_code(KC_UP);
+                }
             }
         }
     }
