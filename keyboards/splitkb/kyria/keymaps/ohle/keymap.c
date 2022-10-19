@@ -39,7 +39,7 @@ enum compose_keycodes {
 #define FUN_BSP  LT(_FUN, KC_BSPC)
 #define NAV      MO(_NAV)
 #define MOUSE    MO(_MOUSE)
-#define ALTSYM   MO(_ALTSYM)
+#define ALTSYM   OSL(_ALTSYM)
 
 #define MT_A     MT(MOD_HYPR, KC_A)
 #define MT_S     MT(MOD_LGUI, KC_S)
