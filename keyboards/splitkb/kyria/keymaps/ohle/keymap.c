@@ -32,6 +32,8 @@ enum compose_keycodes {
     C_CUB,
 };
 
+void clear_ball(void);
+
 // Aliases for readability
 #define NUM_TAB  LT(_NUM, KC_TAB)
 #define SYM_ENT  LT(_SYM, KC_ENT)
@@ -345,4 +347,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
 }
 
+void clear_ball() {
+    pimoroni_trackball_set_rgbw(0, 0, 0, 0);
+}
+
+void caps_word_set_user(bool active) {
+    if (active) {
+        pimoroni_trackball_set_rgbw(42, 161, 152, 0);
+    } else {
+        clear_ball();
+    }
+}
+
+void oneshot_mods_changed_user(uint8_t mods) {
+    if (mods & MOD_MASK_SHIFT) {
+        pimoroni_trackball_set_rgbw(133, 155, 0, 0);
+    } else {
+        clear_ball();
+    }
+}
 #endif
