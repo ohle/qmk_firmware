@@ -366,4 +366,16 @@ void oneshot_mods_changed_user(uint8_t mods) {
         clear_ball();
     }
 }
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    uint8_t layer = get_highest_layer(layer_state);
+    // on nav layer, scroll
+    if (layer == _NAV) {
+        mouse_report.h = TRACKBALL_SCROLL_SCALE * mouse_report.x;
+        mouse_report.v = -TRACKBALL_SCROLL_SCALE * mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
 #endif
