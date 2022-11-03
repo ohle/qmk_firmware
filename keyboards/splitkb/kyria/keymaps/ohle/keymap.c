@@ -213,8 +213,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef ENCODER_ENABLE
 
-#define ACCSCROLL_MAX_STEP 100
-#define ACCSCROLL_STEP_SIZE 2
+#define ACCSCROLL_MAX_STEP 20
+#define ACCSCROLL_STEP_SIZE 1
 #define ACCSCROLL_REPEAT_INTERVAL 200
 
 static uint16_t scrollTimer = 0;
