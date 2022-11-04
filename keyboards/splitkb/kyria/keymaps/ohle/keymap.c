@@ -38,7 +38,7 @@ void clear_ball(void);
 #define NUM_TAB  LT(_NUM, KC_TAB)
 #define SYM_ENT  LT(_SYM, KC_ENT)
 #define ASYM_SPC LT(_ALTSYM, KC_SPC)
-#define FUN_SPC  LT(_FUN, KC_SPC)
+#define FUN_BSPC LT(_FUN, KC_BSPC)
 #define NAV      MO(_NAV)
 #define MOUSE    MO(_MOUSE)
 #define ALTSYM   OSL(_ALTSYM)
@@ -68,8 +68,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |   Esc  |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | : ;  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |      |  |      |      |   N  |   M  | , <  | . >  | / ?  | RShift |
- * `----------------------+------+------+------| Sym  | Num  |  | Fun  | Fun  |------+------+------+----------------------'
- *                        |Altsym| Mouse| Nav  | enter| tab  |  | bspc | Space| del  | bcksp| Enter|
+ * `----------------------+------+------+------| Sym  | Num  |  | Fun  |      |------+------+------+----------------------'
+ *                        |Altsym| Mouse| Nav  | enter| tab  |  | bspc | Space|LShift| bcksp| Enter|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      PAUSE   , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_DEL,
      KC_ESC  , MT_A ,  MT_S   ,  MT_D  ,   MT_F ,   KC_G ,                                        KC_H,   MT_J ,  MT_K ,   MT_L , MT_COL, KC_QUOT,
      LSHFT   , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , XXXXXXX,XXXXXXX,     XXXXXXX, XXXXXXX, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, RSHFT,
-                                ALTSYM ,  MOUSE ,    NAV ,SYM_ENT, NUM_TAB,     RSHFT, FUN_SPC,KC_BSPC, KC_BSPC,KC_ENT
+                                ALTSYM ,  MOUSE ,    NAV ,SYM_ENT, NUM_TAB,     FUN_BSPC, KC_SPC, LSHFT, KC_BSPC,KC_ENT
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
