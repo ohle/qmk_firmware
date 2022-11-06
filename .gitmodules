@@ -21,3 +21,6 @@
 [submodule "lib/pico-sdk"]
 	path = lib/pico-sdk
 	url = https://github.com/qmk/pico-sdk.git
+[submodule "keyboards/splitkb/kyria/keymaps/ohle/getreuer"]
+	path = keyboards/splitkb/kyria/keymaps/ohle/getreuer
+	url = git@github.com:getreuer/qmk-keymap

@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "getreuer/features/achordion.h"
 
 enum layers {
     _BASE = 0,
@@ -268,6 +269,10 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #define SEND_COMPSEQ(seq) SEND_STRING(SS_TAP(COMPOSE_KEY)seq)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_achordion(keycode, record)) {
+        return false;
+    }
+
     if (!record->event.pressed) {
         return true;
     }
@@ -390,6 +395,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 }
 
 void matrix_scan_user() {
+    achordion_task();
     if (mousemode && timer_elapsed(mousemode_timer) >= MOUSEMODE_LINGER) {
         pimoroni_trackball_set_rgbw(0, 0, 0, 0);
         mousemode = false;

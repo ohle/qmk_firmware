@@ -19,3 +19,4 @@ DYNAMIC_TAPPING_TERM_ENABLE = yes
 POINTING_DEVICE_ENABLE = yes
 POINTING_DEVICE_DRIVER = pimoroni_trackball
 
+SRC += getreuer/features/achordion.c
