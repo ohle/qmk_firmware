@@ -394,6 +394,18 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     return mouse_report;
 }
 
+bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, 
+        uint16_t other_keycode, keyrecord_t *other_record) {
+    // Allow same-hand holds when the other key is in the row below the
+    // alphas
+    if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 3) {
+        return true;
+    }
+
+    // Otherwise, follow opposite-hands rule
+    return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
 void matrix_scan_user() {
     achordion_task();
     if (mousemode && timer_elapsed(mousemode_timer) >= MOUSEMODE_LINGER) {
