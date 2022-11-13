@@ -266,9 +266,11 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return false;
 }
 
+uint16_t mouseguard_timer = 0;
 #define SEND_COMPSEQ(seq) SEND_STRING(SS_TAP(COMPOSE_KEY)seq)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    mouseguard_timer = timer_read();
     if (!process_achordion(keycode, record)) {
         return false;
     }
@@ -382,6 +384,9 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     mouse_report.x = 0;
     mouse_report.y = 0;
 
+    if (timer_elapsed(mouseguard_timer) < 200) {
+        return mouse_report;
+    }
     if (x != 0 || y != 0) {
         pimoroni_trackball_set_rgbw(0, 0, 0, 255);
         mousemode = true;
