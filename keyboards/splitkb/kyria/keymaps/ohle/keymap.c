@@ -390,8 +390,8 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     }
     // on nav layer, scroll
     if (layer_state_is(_NAV)) {
-        mouse_report.h = TRACKBALL_SCROLL_SCALE * mouse_report.x;
-        mouse_report.v = -TRACKBALL_SCROLL_SCALE * mouse_report.y;
+        mouse_report.h = TRACKBALL_SCROLL_SCALE * x;
+        mouse_report.v = -TRACKBALL_SCROLL_SCALE * y;
         mouse_report.x = 0;
         mouse_report.y = 0;
     } else {
