@@ -373,11 +373,16 @@ void oneshot_mods_changed_user(uint8_t mods) {
 }
 
 uint16_t mousemode_timer;
+uint16_t mouse_debounce;
 bool mousemode = false;
 
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (mouse_report.x > 0 || mouse_report.y > 0) {
+    mouse_xy_report_t x = mouse_report.x, y = mouse_report.y;
+    mouse_report.x = 0;
+    mouse_report.y = 0;
+
+    if (x != 0 || y != 0) {
         pimoroni_trackball_set_rgbw(0, 0, 0, 255);
         mousemode = true;
         layer_on(_MOUSE);
@@ -389,6 +394,9 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         mouse_report.v = -TRACKBALL_SCROLL_SCALE * mouse_report.y;
         mouse_report.x = 0;
         mouse_report.y = 0;
+    } else {
+        mouse_report.x = x;
+        mouse_report.y = y;
     }
 
     return mouse_report;
