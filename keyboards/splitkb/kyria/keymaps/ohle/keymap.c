@@ -384,7 +384,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     mouse_report.x = 0;
     mouse_report.y = 0;
 
-    if (timer_elapsed(mouseguard_timer) < 200) {
+    if (timer_elapsed(mouseguard_timer) < 500) {
         return mouse_report;
     }
     if (x != 0 || y != 0) {
