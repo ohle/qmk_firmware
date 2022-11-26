@@ -12,8 +12,8 @@ enum layers {
 };
 
 
-enum compose_keycodes {
-    C_MU = SAFE_RANGE,
+enum custom_keycodes {
+    C_MU = SAFE_RANGE, // C_XXX: Compose characters
     C_AE,
     C_OE,
     C_UE,
@@ -31,18 +31,23 @@ enum compose_keycodes {
     C_SQRT,
     C_SQ,
     C_CUB,
+    SL_SPC, // SL_: Smart Layer keycodes. Emit a keycode and deactivate a
+    SL_ENT, // layer at the same time
+    NXTWRD,
+    PRVWRD,
 };
 
 void clear_ball(void);
 
 // Aliases for readability
-#define NUM_TAB  LT(_NUM, KC_TAB)
-#define SYM_ENT  LT(_SYM, KC_ENT)
-#define ASYM_SPC LT(_ALTSYM, KC_SPC)
-#define FUN_BSPC LT(_FUN, KC_BSPC)
-#define NAV      MO(_NAV)
-#define MOUSE    MO(_MOUSE)
-#define ALTSYM   OSL(_ALTSYM)
+#define MOUSE_TAB LT(_MOUSE, KC_TAB)
+#define SYM_ENT   LT(_SYM, KC_ENT)
+#define ASYM_SPC  LT(_ALTSYM, KC_SPC)
+#define FUN_BSPC  LT(_FUN, KC_BSPC)
+#define NAV       TT(_NAV)
+#define NUM       TT(_NUM)
+#define MOUSE     MO(_MOUSE)
+#define ALTSYM    OSL(_ALTSYM)
 
 #define MT_A     MT(MOD_HYPR, KC_A)
 #define MT_S     MT(MOD_LGUI, KC_S)
@@ -78,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_ESC  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_DEL,
      ALTSYM  , MT_A ,  MT_S   ,  MT_D  ,   MT_F ,   KC_G ,                                        KC_H,   MT_J ,  MT_K ,   MT_L , MT_COL, KC_QUOT,
      LSHFT   , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , XXXXXXX,XXXXXXX,     XXXXXXX, XXXXXXX, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, RSHFT,
-                                 PAUSE ,  MOUSE ,    NAV ,SYM_ENT, NUM_TAB,     FUN_BSPC, KC_SPC, LSHFT, KC_BSPC,KC_ENT
+                                 PAUSE ,   NAV ,    NUM , SYM_ENT ,MOUSE_TAB,   FUN_BSPC, KC_SPC, LSHFT, KC_BSPC,KC_ENT
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -96,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, DT_PRNT, DT_DOWN, DT_UP, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_LPRN, KC_RPRN,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_LCBR, KC_RCBR,
       LSHFT  , _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , KC_2   , KC_3   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
-                                 _______, _______, _______, _______ , _______, _______, _______ , KC_MINUS, KC_0   , _______
+                                 _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, KC_0   , _______
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -136,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  PAUSE |      |      |      |      |      |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |        |
+ * |  PAUSE |      |NXTWRD|NXTWRD|      |      |                              | MW←  |  MW↓ |  MW↑ |  MW→ |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | Hypr | GUI  |  Alt | Ctrl |      |                              |  ←   |   ↓  |   ↑  |   →  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -147,9 +152,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NAV] = LAYOUT(
-      _______, _______, _______, _______, _______, _______,                                     KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______,
+      _______, _______,  NXTWRD,  NXTWRD, _______, _______,                                     KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-      LSHFT  , _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
+      LSHFT  , _______, _______, _______, _______, PRVWRD , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
                                  _______, _______, _______, _______ , _______, _______, _______ , _______, _______, _______
     ),
 
@@ -347,6 +352,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case C_CUB:
             SEND_COMPSEQ("^3");
+            break;
+        case SL_SPC:
+            layer_clear();
+            SEND_STRING(" ");
+            break;
+        case SL_ENT:
+            layer_clear();
+            SEND_STRING("\n");
+            break;
+        case NXTWRD:
+            if (shifted) {
+                SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_RIGHT))));
+            } else {
+                SEND_STRING(SS_LCTL(SS_TAP(X_RIGHT)));
+            }
+            break;
+        case PRVWRD:
+            if (shifted) {
+                SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_LEFT))));
+            } else {
+                SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)));
+            }
             break;
         default:
             return true;
