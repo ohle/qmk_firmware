@@ -33,6 +33,7 @@ enum custom_keycodes {
     C_CUB,
     SL_SPC, // SL_: Smart Layer keycodes. Emit a keycode and deactivate a
     SL_ENT, // layer at the same time
+    SL_ESC,
     NXTWRD,
     PRVWRD,
 };
@@ -98,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NUM] = LAYOUT(
-      _______, _______, DT_PRNT, DT_DOWN, DT_UP, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_LPRN, KC_RPRN,
+      SL_ESC , _______, DT_PRNT, DT_DOWN, DT_UP, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_LPRN, KC_RPRN,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_LCBR, KC_RCBR,
       LSHFT  , _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , KC_2   , KC_3   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
                                  _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, KC_0   , _______
@@ -152,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_NAV] = LAYOUT(
-      _______, _______,  NXTWRD,  NXTWRD, _______, _______,                                     KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______,
+      SL_ESC , _______,  NXTWRD,  NXTWRD, _______, _______,                                     KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
       LSHFT  , _______, _______, _______, _______, PRVWRD , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
                                  _______, _______, _______, _______ , _______, _______, _______ , _______, _______, _______
@@ -360,6 +361,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SL_ENT:
             layer_clear();
             SEND_STRING("\n");
+            break;
+        case SL_ESC:
+            layer_clear();
+            tap_code(KC_ESC);
             break;
         case NXTWRD:
             if (shifted) {
