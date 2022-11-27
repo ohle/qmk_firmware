@@ -412,7 +412,6 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         return mouse_report;
     }
     if (x != 0 || y != 0) {
-        pimoroni_trackball_set_rgbw(0, 0, 0, 255);
         mousemode = true;
         layer_on(_MOUSE);
         mousemode_timer = timer_read();
@@ -446,9 +445,25 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,
 void matrix_scan_user() {
     achordion_task();
     if (mousemode && timer_elapsed(mousemode_timer) >= MOUSEMODE_LINGER) {
-        pimoroni_trackball_set_rgbw(0, 0, 0, 0);
         mousemode = false;
         layer_off(_MOUSE);
     }
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case _NAV:
+            pimoroni_trackball_set_rgbw(181, 137, 0, 0);
+            break;
+        case _MOUSE:
+            pimoroni_trackball_set_rgbw(0, 0, 0, 255);
+            break;
+        case _NUM:
+            pimoroni_trackball_set_rgbw(211, 54, 130, 0);
+            break;
+        default:
+            pimoroni_trackball_set_rgbw(0, 0, 0, 0);
+    }
+    return state;
 }
 #endif
