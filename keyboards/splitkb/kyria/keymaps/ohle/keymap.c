@@ -367,18 +367,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_ESC);
             break;
         case NXTWRD:
-            if (shifted) {
-                SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_RIGHT))));
-            } else {
-                SEND_STRING(SS_LCTL(SS_TAP(X_RIGHT)));
-            }
+            tap_code16(C(KC_RGHT));
             break;
         case PRVWRD:
-            if (shifted) {
-                SEND_STRING(SS_LSFT(SS_LCTL(SS_TAP(X_LEFT))));
-            } else {
-                SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)));
-            }
+            tap_code16(C(KC_LEFT));
             break;
         default:
             return true;
