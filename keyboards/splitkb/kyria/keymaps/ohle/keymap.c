@@ -64,6 +64,34 @@ void clear_ball(void);
 
 #define PAUSE    KC_MEDIA_PLAY_PAUSE
 
+enum combo_events {
+    YH_LPRN,
+    UJ_RPRN,
+    IK_LCBR,
+    OL_RCBR,
+    JM_LBRC,
+    KCOMMA_RBRC,
+    COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM yh_combo[] = { KC_Y, KC_H, COMBO_END };
+const uint16_t PROGMEM uj_combo[] = { KC_U, MT_J, COMBO_END };
+const uint16_t PROGMEM ik_combo[] = { KC_I, MT_K, COMBO_END };
+const uint16_t PROGMEM ol_combo[] = { KC_O, MT_L, COMBO_END };
+const uint16_t PROGMEM jm_combo[] = { MT_J, KC_M, COMBO_END };
+const uint16_t PROGMEM kcomma_combo[] = { MT_K, KC_COMM, COMBO_END };
+
+combo_t key_combos[] = {
+    [YH_LPRN] = COMBO(yh_combo, KC_LPRN),
+    [UJ_RPRN] = COMBO(uj_combo, KC_RPRN),
+    [IK_LCBR] = COMBO(ik_combo, KC_LCBR),
+    [OL_RCBR] = COMBO(ol_combo, KC_RCBR),
+    [JM_LBRC] = COMBO(jm_combo, KC_LBRC),
+    [KCOMMA_RBRC] = COMBO(kcomma_combo, KC_RBRC),
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
