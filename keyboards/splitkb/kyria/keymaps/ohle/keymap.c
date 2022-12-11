@@ -71,6 +71,10 @@ enum combo_events {
     KCOMMA_RCBR,
     OL_LBRC,
     PSEMI_RBRC,
+    UIO_NUMBERS,
+    N789_NUMBERS,
+    JKL_NAV,
+    ARROWJKL_NAV,
     COMBO_LENGTH
 };
 
@@ -82,6 +86,10 @@ const uint16_t PROGMEM jm_combo[] = { MT_J, KC_M, COMBO_END };
 const uint16_t PROGMEM kcomma_combo[] = { MT_K, KC_COMM, COMBO_END };
 const uint16_t PROGMEM ol_combo[] = { KC_O, MT_L, COMBO_END };
 const uint16_t PROGMEM psemi_combo[] = { KC_P, MT_COL, COMBO_END };
+const uint16_t PROGMEM uio_combo[] = { KC_U, KC_I, KC_O, COMBO_END };
+const uint16_t PROGMEM n789_combo[] = { KC_7, KC_8, KC_9, COMBO_END };
+const uint16_t PROGMEM jkl_combo[] = { MT_J, MT_K, MT_L, COMBO_END };
+const uint16_t PROGMEM arrowjkl_combo[] = { KC_DOWN, KC_UP, KC_RIGHT, COMBO_END };
 
 combo_t key_combos[] = {
     [UJ_LPRN] = COMBO(uj_combo, KC_LPRN),
@@ -90,6 +98,23 @@ combo_t key_combos[] = {
     [KCOMMA_RCBR] = COMBO(kcomma_combo, KC_RCBR),
     [OL_LBRC] = COMBO(ol_combo, KC_LBRC),
     [PSEMI_RBRC] = COMBO(psemi_combo, KC_RBRC),
+    [UIO_NUMBERS] = COMBO_ACTION(uio_combo),
+    [N789_NUMBERS] = COMBO_ACTION(n789_combo),
+    [JKL_NAV] = COMBO_ACTION(jkl_combo),
+    [ARROWJKL_NAV] = COMBO_ACTION(arrowjkl_combo),
+};
+
+
+enum {
+    TD_2COMMA,
+    TD_3DOT,
+    TD_0BSPC,
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_2COMMA] = ACTION_TAP_DANCE_DOUBLE(KC_2, KC_COMM),
+    [TD_3DOT] = ACTION_TAP_DANCE_DOUBLE(KC_3, KC_DOT),
+    [TD_0BSPC] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_BSPC),
 };
 
 // clang-format off
@@ -129,8 +154,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT(
       SL_ESC , _______, DT_PRNT, DT_DOWN, DT_UP, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_LPRN, KC_RPRN,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_LCBR, KC_RCBR,
-      LSHFT  , KC_SCLN , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , KC_2   , KC_3   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
-                                 _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, KC_0   , _______
+      LSHFT  , KC_SCLN , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , TD(TD_2COMMA)   , TD(TD_3DOT)   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
+                                 _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, TD(TD_0BSPC)   , _______
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -404,6 +429,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
     }
     return false;
+}
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case UIO_NUMBERS:
+        case N789_NUMBERS:
+            if (pressed) {
+                layer_invert(_NUM);
+            }
+            break;
+        case JKL_NAV:
+        case ARROWJKL_NAV:
+            if (pressed) {
+                layer_invert(_NAV);
+            }
+    }
 }
 
 void clear_ball() {
