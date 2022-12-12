@@ -45,8 +45,8 @@ void clear_ball(void);
 #define SYM_ENT   LT(_SYM, KC_ENT)
 #define ASYM_SPC  LT(_ALTSYM, KC_SPC)
 #define FUN_BSPC  LT(_FUN, KC_BSPC)
-#define NAV       TT(_NAV)
-#define NUM       TT(_NUM)
+#define NAV       MO(_NAV)
+#define NUM       MO(_NUM)
 #define MOUSE     MO(_MOUSE)
 #define ALTSYM    OSL(_ALTSYM)
 
