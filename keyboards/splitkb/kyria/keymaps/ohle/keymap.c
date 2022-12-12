@@ -154,8 +154,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT(
       SL_ESC , _______, DT_PRNT, DT_DOWN, DT_UP, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_LPRN, KC_RPRN,
       _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_LCBR, KC_RCBR,
-      LSHFT  , KC_SCLN , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , TD(TD_2COMMA)   , TD(TD_3DOT)   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
-                                 _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, TD(TD_0BSPC)   , _______
+      LSHFT  , KC_SCLN , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , LT(0, KC_2)   , LT(0, KC_3)   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
+                                 _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, LT(0, KC_0) , _______
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -330,9 +330,9 @@ uint16_t mouseguard_timer = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     mouseguard_timer = timer_read();
-    if (!process_achordion(keycode, record)) {
-        return false;
-    }
+    /* if (!process_achordion(keycode, record)) { */
+    /*     return false; */
+    /* } */
 
     if (!record->event.pressed) {
         return true;
@@ -425,6 +425,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case PRVWRD:
             tap_code16(C(KC_LEFT));
             break;
+        case LT(0, KC_0):
+            if (record->tap.count && record->event.pressed) {
+                return true; // process tapped key normally
+            } else if (record->event.pressed) {
+                tap_code(KC_BSPC); // intercept hold and send backspace
+                return false;
+            }
+            return true; // process release normally
+        case LT(0, KC_2):
+            if (record->tap.count && record->event.pressed) {
+                return true;
+            } else if (record->event.pressed) {
+                tap_code(KC_COMM);
+                return false;
+            }
+            return true;
+        case LT(0, KC_3):
+            if (record->tap.count && record->event.pressed) {
+                return true;
+            } else if (record->event.pressed) {
+                tap_code(KC_DOT);
+                return false;
+            }
+            return true;
         default:
             return true;
     }
@@ -512,7 +536,7 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,
 }
 
 void matrix_scan_user() {
-    achordion_task();
+    /* achordion_task(); */
     if (mousemode && timer_elapsed(mousemode_timer) >= MOUSEMODE_LINGER) {
         mousemode = false;
         layer_off(_MOUSE);
