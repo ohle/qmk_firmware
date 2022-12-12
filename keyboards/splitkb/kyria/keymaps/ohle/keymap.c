@@ -75,6 +75,8 @@ enum combo_events {
     N789_NUMBERS,
     JKL_NAV,
     ARROWJKL_NAV,
+    MCOMMDOT_MOUSE,
+    DMPLY1DMREC2DMPLY2_MOUSE,
     COMBO_LENGTH
 };
 
@@ -90,6 +92,8 @@ const uint16_t PROGMEM uio_combo[] = { KC_U, KC_I, KC_O, COMBO_END };
 const uint16_t PROGMEM n789_combo[] = { KC_7, KC_8, KC_9, COMBO_END };
 const uint16_t PROGMEM jkl_combo[] = { MT_J, MT_K, MT_L, COMBO_END };
 const uint16_t PROGMEM arrowjkl_combo[] = { KC_DOWN, KC_UP, KC_RIGHT, COMBO_END };
+const uint16_t PROGMEM mcommdot_combo[] = { KC_M, KC_COMM, KC_DOT, COMBO_END };
+const uint16_t PROGMEM dmply1dmrec2dmply2_combo[] = { DM_PLY1, DM_REC2, DM_PLY2, COMBO_END };
 
 combo_t key_combos[] = {
     [UJ_LPRN] = COMBO(uj_combo, KC_LPRN),
@@ -102,6 +106,8 @@ combo_t key_combos[] = {
     [N789_NUMBERS] = COMBO_ACTION(n789_combo),
     [JKL_NAV] = COMBO_ACTION(jkl_combo),
     [ARROWJKL_NAV] = COMBO_ACTION(arrowjkl_combo),
+    [MCOMMDOT_MOUSE] = COMBO_ACTION(mcommdot_combo),
+    [DMPLY1DMREC2DMPLY2_MOUSE] = COMBO_ACTION(dmply1dmrec2dmply2_combo),
 };
 
 
@@ -468,6 +474,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             if (pressed) {
                 layer_invert(_NAV);
             }
+            break;
+        case MCOMMDOT_MOUSE:
+        case DMPLY1DMREC2DMPLY2_MOUSE:
+            if (pressed) {
+                layer_invert(_MOUSE);
+            }
+            break;
     }
 }
 
