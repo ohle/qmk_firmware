@@ -70,6 +70,8 @@ enum combo_events {
     JM_LCBR,
     KCOMMA_RCBR,
     OL_LBRC,
+    YH_PLUS,
+    HN_EQUALS,
     PSEMI_RBRC,
     UIO_NUMBERS,
     N789_NUMBERS,
@@ -88,6 +90,8 @@ const uint16_t PROGMEM jm_combo[] = { MT_J, KC_M, COMBO_END };
 const uint16_t PROGMEM kcomma_combo[] = { MT_K, KC_COMM, COMBO_END };
 const uint16_t PROGMEM ol_combo[] = { KC_O, MT_L, COMBO_END };
 const uint16_t PROGMEM psemi_combo[] = { KC_P, MT_COL, COMBO_END };
+const uint16_t PROGMEM yh_combo[] = { KC_Y, KC_H, COMBO_END };
+const uint16_t PROGMEM hn_combo[] = { KC_H, KC_N, COMBO_END };
 const uint16_t PROGMEM uio_combo[] = { KC_U, KC_I, KC_O, COMBO_END };
 const uint16_t PROGMEM n789_combo[] = { KC_7, KC_8, KC_9, COMBO_END };
 const uint16_t PROGMEM jkl_combo[] = { MT_J, MT_K, MT_L, COMBO_END };
@@ -101,6 +105,8 @@ combo_t key_combos[] = {
     [JM_LCBR] = COMBO(jm_combo, KC_LCBR),
     [KCOMMA_RCBR] = COMBO(kcomma_combo, KC_RCBR),
     [OL_LBRC] = COMBO(ol_combo, KC_LBRC),
+    [YH_PLUS] = COMBO(yh_combo, KC_PLUS),
+    [HN_EQUALS] = COMBO(hn_combo, KC_EQL),
     [PSEMI_RBRC] = COMBO(psemi_combo, KC_RBRC),
     [UIO_NUMBERS] = COMBO_ACTION(uio_combo),
     [N789_NUMBERS] = COMBO_ACTION(n789_combo),
