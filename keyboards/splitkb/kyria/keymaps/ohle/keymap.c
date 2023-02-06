@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        | Hypr | GUI  |  Alt | Ctrl |      |                              |  = + | 4 $  | 5 %  | 6 ^  |  {   |   }    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |      |      |      |      |      |      |      |  |      |      |  \ | | 1 !  | 2 @  | 3 #  | [ {  |  ] }   |
+ * | LShift |      |      |      |      |      |      |      |  |      |      |  \ | | 1 !  | 2 @  | 3 #  |  ,   |   .    |
  * `----------------------+------+------+------|      |      |  |      |      |------+------+------+----------------------'
  *                        |      |      |      | Space|      |  |      | Space|  - _ | 0 )  |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -168,8 +168,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_NUM] = LAYOUT(
       SL_ESC , _______, DT_PRNT, DT_DOWN, DT_UP, _______,                                     KC_GRV , KC_7   , KC_8   , KC_9   , KC_LPRN, KC_RPRN,
-      _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_LCBR, KC_RCBR,
-      LSHFT  , KC_SCLN , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , LT(0, KC_2)   , LT(0, KC_3)   , KC_LBRC, MT(MOD_RSFT, KC_RBRC),
+      _______, KC_HYPR, KC_LGUI, KC_LALT, KC_LCTL, _______,                                     KC_EQL , KC_4   , KC_5   , KC_6   , KC_BSPC, KC_RCBR,
+      LSHFT  , KC_SCLN , KC_COMM, KC_DOT , KC_SLSH, KC_QUOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_1   , LT(0, KC_2)   , LT(0, KC_3)   , KC_COMM, MT(MOD_RSFT, KC_DOT),
                                  _______, _______, _______, SL_ENT , _______, _______, _______, KC_MINUS, KC_0 , _______
     ),
 /*
@@ -543,7 +543,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     return mouse_report;
 }
 
-bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, 
+bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record,
         uint16_t other_keycode, keyrecord_t *other_record) {
     // Allow same-hand holds when the other key is in the row below the
     // alphas
