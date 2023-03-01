@@ -295,12 +295,21 @@ static uint8_t scrollStepSize = 1;
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
 
+    uint8_t layer = get_highest_layer(layer_state);
     if (index == 0) {
         // Volume control
         if (clockwise) {
-            tap_code(KC_VOLU);
+            if (layer == _FUN) {
+                tap_code16(C(KC_PLUS));
+            } else {
+                tap_code(KC_VOLU);
+            }
         } else {
-            tap_code(KC_VOLD);
+            if (layer == _FUN) {
+                tap_code16(C(KC_MINUS));
+            } else {
+                tap_code(KC_VOLD);
+            }
         }
     } else if (index == 1) {
         // Accelerated scrolling using up/down arrows
@@ -312,7 +321,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
         scrollTimer = timer_read();
 
-        uint8_t layer = get_highest_layer(layer_state);
         if (clockwise) {
             if (layer == _NAV) {
                 SEND_STRING(SS_RCTL(SS_RALT(SS_TAP(X_RIGHT))));
