@@ -9,6 +9,7 @@ enum layers {
     _NAV,
     _MOUSE,
     _ALTSYM,
+    _GAME,
 };
 
 
@@ -80,6 +81,8 @@ enum combo_events {
     ARROWJKL_NAV,
     MCOMMDOT_MOUSE,
     DMPLY1DMREC2DMPLY2_MOUSE,
+    SDF_GAME,
+    GASD_GAME,
     COMBO_LENGTH
 };
 
@@ -100,6 +103,8 @@ const uint16_t PROGMEM jkl_combo[] = { MT_J, MT_K, MT_L, COMBO_END };
 const uint16_t PROGMEM arrowjkl_combo[] = { KC_DOWN, KC_UP, KC_RIGHT, COMBO_END };
 const uint16_t PROGMEM mcommdot_combo[] = { KC_M, KC_COMM, KC_DOT, COMBO_END };
 const uint16_t PROGMEM dmply1dmrec2dmply2_combo[] = { DM_PLY1, DM_REC2, DM_PLY2, COMBO_END };
+const uint16_t PROGMEM sdf_combo[] = { MT_S, MT_D, MT_F, COMBO_END };
+const uint16_t PROGMEM gasd_combo[] = { KC_A, KC_S, KC_D, COMBO_END };
 
 combo_t key_combos[] = {
     [UJ_LPRN] = COMBO(uj_combo, KC_LPRN),
@@ -117,6 +122,8 @@ combo_t key_combos[] = {
     [ARROWJKL_NAV] = COMBO_ACTION(arrowjkl_combo),
     [MCOMMDOT_MOUSE] = COMBO_ACTION(mcommdot_combo),
     [DMPLY1DMREC2DMPLY2_MOUSE] = COMBO_ACTION(dmply1dmrec2dmply2_combo),
+    [SDF_GAME] = COMBO_ACTION(sdf_combo),
+    [GASD_GAME] = COMBO_ACTION(gasd_combo)
 };
 
 
@@ -263,6 +270,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, C_C    , C_SQRT , _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, C_MU   , C_LEQ  , C_GEQ  , _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, C_MDASH, _______, _______
     ),
+ /*
+  * ,-------------------------------------------.                              ,-------------------------------------------.
+  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+  * `----------------------+------+------+------+      |      |  |      |      |------+------+------+----------------------'
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        |      |      |      |      |      |  |      |      |      |      |      |
+  *                        `----------------------------------'  `----------------------------------'
+  */
+     [_GAME] = LAYOUT(
+       _______, _______, KC_Q   , KC_W   , KC_E   , _______,                                     _______, _______, _______, _______, _______, _______,
+       _______, KC_E   , KC_A   , KC_S   , KC_D   , _______,                                     _______, _______, _______, _______, _______, _______,
+       _______, _______, _______, _______, KC_F   , _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______,
+                                  _______, KC_LSFT, KC_LCTL, KC_SPC , _______, _______, _______, _______, _______, _______
+     ),
 //  * Layer template
 //  *
 //  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -496,6 +521,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 layer_invert(_MOUSE);
             }
             break;
+        case SDF_GAME:
+        case GASD_GAME:
+            if (pressed) {
+                layer_invert(_GAME);
+            }
+            break;
     }
 }
 
@@ -581,6 +612,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case _NUM:
             pimoroni_trackball_set_rgbw(211, 54, 130, 0);
+            break;
+        case _GAME:
+            pimoroni_trackball_set_rgbw(255, 0, 0, 0);
             break;
         default:
             pimoroni_trackball_set_rgbw(0, 0, 0, 0);
