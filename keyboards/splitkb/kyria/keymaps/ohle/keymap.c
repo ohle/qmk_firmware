@@ -348,7 +348,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
         if (clockwise) {
             if (layer == _NAV) {
-                SEND_STRING(SS_RCTL(SS_RALT(SS_TAP(X_RIGHT))));
+                SEND_STRING(SS_RCTL(SS_RSFT(SS_TAP(X_RIGHT))));
             } else if (layer == _MOUSE) {
                 SEND_STRING(SS_TAP(X_TAB));
             } else {
@@ -358,7 +358,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             }
         } else {
             if (layer == _NAV) {
-                SEND_STRING(SS_RCTL(SS_RALT(SS_TAP(X_LEFT))));
+                SEND_STRING(SS_RCTL(SS_RSFT(SS_TAP(X_LEFT))));
             } else if (layer == _MOUSE) {
                 SEND_STRING(SS_LSFT(SS_TAP(X_TAB)));
             } else {
