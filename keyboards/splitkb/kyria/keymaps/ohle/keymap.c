@@ -83,6 +83,8 @@ enum combo_events {
     DMPLY1DMREC2DMPLY2_MOUSE,
     SDF_GAME,
     GASD_GAME,
+    ZXCV_SWAP,
+    MCOMMDOTSLASH_SWAP,
     COMBO_LENGTH
 };
 
@@ -105,6 +107,8 @@ const uint16_t PROGMEM mcommdot_combo[] = { KC_M, KC_COMM, KC_DOT, COMBO_END };
 const uint16_t PROGMEM dmply1dmrec2dmply2_combo[] = { DM_PLY1, DM_REC2, DM_PLY2, COMBO_END };
 const uint16_t PROGMEM sdf_combo[] = { MT_S, MT_D, MT_F, COMBO_END };
 const uint16_t PROGMEM gasd_combo[] = { KC_A, KC_S, KC_D, COMBO_END };
+const uint16_t PROGMEM zxcv_combo[] = { KC_Z, KC_X, KC_C, KC_V, COMBO_END };
+const uint16_t PROGMEM mcommdotslash_combo[] = { KC_M, KC_COMM, KC_DOT, KC_SLSH, COMBO_END };
 
 combo_t key_combos[] = {
     [UJ_LPRN] = COMBO(uj_combo, KC_LPRN),
@@ -123,7 +127,9 @@ combo_t key_combos[] = {
     [MCOMMDOT_MOUSE] = COMBO_ACTION(mcommdot_combo),
     [DMPLY1DMREC2DMPLY2_MOUSE] = COMBO_ACTION(dmply1dmrec2dmply2_combo),
     [SDF_GAME] = COMBO_ACTION(sdf_combo),
-    [GASD_GAME] = COMBO_ACTION(gasd_combo)
+    [GASD_GAME] = COMBO_ACTION(gasd_combo),
+    [ZXCV_SWAP] = COMBO(zxcv_combo, SH_TG),
+    [MCOMMDOTSLASH_SWAP] = COMBO(mcommdotslash_combo, SH_TG)
 };
 
 
