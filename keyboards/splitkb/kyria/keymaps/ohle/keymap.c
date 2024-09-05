@@ -23,6 +23,7 @@ enum custom_keycodes {
     C_EUR,
     C_MDASH,
     C_PI,
+    C_NDASH,
     C_R,
     C_C,
     C_LEQ,
@@ -279,7 +280,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, C_SQ   , C_CUB  , C_EUR  , C_R    , C_TM   ,                                     C_PM   , C_UE   , _______,    C_OE   , C_PI, _______,
       _______, C_AE   , C_SZ   , C_DEG  , _______, _______,                                     C_NEQ  , _______, _______, _______, _______, _______,
       _______, _______, _______, C_C    , C_SQRT , _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, C_MU   , C_LEQ  , C_GEQ  , _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, C_MDASH, _______, _______
+                                 _______, _______, _______, _______, _______, _______, _______, C_MDASH, C_NDASH, _______
     ),
  /*
   * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -433,6 +434,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case C_MDASH:
             SEND_COMPSEQ("---");
+            break;
+        case C_NDASH:
+            SEND_COMPSEQ("--.");
             break;
         case C_R:
             SEND_COMPSEQ("or");
