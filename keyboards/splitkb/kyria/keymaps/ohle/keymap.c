@@ -79,7 +79,6 @@ enum combo_events {
     PSEMI_RBRC,
     UIO_NUMBERS,
     N789_NUMBERS,
-    JK_ESC,
     JKL_NAV,
     ARROWJKL_NAV,
     MCOMMDOT_MOUSE,
@@ -105,7 +104,6 @@ const uint16_t PROGMEM hn_combo[] = { KC_H, KC_N, COMBO_END };
 const uint16_t PROGMEM uio_combo[] = { KC_U, KC_I, KC_O, COMBO_END };
 const uint16_t PROGMEM n789_combo[] = { KC_7, KC_8, KC_9, COMBO_END };
 const uint16_t PROGMEM jkl_combo[] = { MT_J, MT_K, MT_L, COMBO_END };
-const uint16_t PROGMEM jk_combo[] = { MT_J, MT_K, COMBO_END };
 const uint16_t PROGMEM arrowjkl_combo[] = { KC_DOWN, KC_UP, KC_RIGHT, COMBO_END };
 const uint16_t PROGMEM mcommdot_combo[] = { KC_M, KC_COMM, KC_DOT, COMBO_END };
 const uint16_t PROGMEM dmply1dmrec2dmply2_combo[] = { DM_PLY1, DM_REC2, DM_PLY2, COMBO_END };
@@ -126,7 +124,6 @@ combo_t key_combos[] = {
     [TWOZERO_BACKSPACE] = COMBO(twozero_combo, KC_BSPC),
     [UIO_NUMBERS] = COMBO_ACTION(uio_combo),
     [N789_NUMBERS] = COMBO_ACTION(n789_combo),
-    [JK_ESC] = COMBO(jk_combo, KC_ESC),
     [JKL_NAV] = COMBO_ACTION(jkl_combo),
     [ARROWJKL_NAV] = COMBO_ACTION(arrowjkl_combo),
     [MCOMMDOT_MOUSE] = COMBO_ACTION(mcommdot_combo),
