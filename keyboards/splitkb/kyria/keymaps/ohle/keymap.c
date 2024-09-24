@@ -47,7 +47,6 @@ void clear_ball(void);
 #define MOUSE_TAB LT(_MOUSE, KC_TAB)
 #define SYM_ENT   LT(_SYM, KC_ENT)
 #define ASYM_SPC  LT(_ALTSYM, KC_SPC)
-#define FUN_BSPC  LT(_FUN, KC_BSPC)
 #define NAV       MO(_NAV)
 #define NUM       MO(_NUM)
 #define MOUSE     MO(_MOUSE)
@@ -139,12 +138,14 @@ enum {
     TD_2COMMA,
     TD_3DOT,
     TD_0BSPC,
+    TD_FUNC_LOCK,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_2COMMA] = ACTION_TAP_DANCE_DOUBLE(KC_2, KC_COMM),
     [TD_3DOT] = ACTION_TAP_DANCE_DOUBLE(KC_3, KC_DOT),
     [TD_0BSPC] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_BSPC),
+    [TD_FUNC_LOCK] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_BSPC, _FUN),
 };
 
 // clang-format off
@@ -167,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_ESC  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_DEL,
      ALTSYM  , MT_A ,  MT_S   ,  MT_D  ,   MT_F ,   KC_G ,                                        KC_H,   MT_J ,  MT_K ,   MT_L , MT_COL, KC_QUOT,
      LSHFT   , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , XXXXXXX,XXXXXXX,     XXXXXXX, XXXXXXX, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, RSHFT,
-                                 PAUSE ,   NAV ,    NUM , SYM_ENT ,MOUSE_TAB,   FUN_BSPC, KC_SPC, LSHFT, KC_BSPC,KC_ENT
+                                 PAUSE ,   NAV ,    NUM , SYM_ENT ,MOUSE_TAB,   TT(_FUN), KC_SPC, LSHFT, KC_BSPC,KC_ENT
     ),
 /*
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -630,6 +631,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case _GAME:
             pimoroni_trackball_set_rgbw(255, 0, 0, 0);
+        case _FUN:
+            pimoroni_trackball_set_rgbw(220, 100, 100, 0);
             break;
         default:
             pimoroni_trackball_set_rgbw(0, 0, 0, 0);
